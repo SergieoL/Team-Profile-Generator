@@ -24,17 +24,16 @@ module.exports = (employees, engineers, interns) => {
     const internHtml = interns.map(({name, id, email, school}) => {
         return `
         <div class="col-4">
-        <div class="card bg-primary text-light">
-            <h3 class="card-subtitle m-auto">${name}</h3>
-            <h3 class="card-subtitle m-auto">Intern</h3>
-        </div>
-        <div class="card-body">
-            <p>ID: ${id}</p>
-            <p><a href=mailto:${email}>Email: ${email}</a></p>
-            <p>School: ${school}</p>
+        <div class="card ">
+            <div class="card-body">
+                <h4 class="card-header mx-auto text-center bg-primary text-light">${name}</h4>
+                <h5 class="card-header text-center bg-primary text-light">Intern</h4>
+                <p class="card-text">ID: ${id}</p>
+                <p class="card-text">Email: <a href=mailto:${email}></a>${email}</p>
+                <p class="card-text">School: ${school}</p>
+            </div>
         </div>
     </div>
-        
         `
     })
 
@@ -42,17 +41,16 @@ module.exports = (employees, engineers, interns) => {
 
         return `
         <div class="col-4">
-        <div class="card bg-primary text-light">
-            <h3 class="card-subtitle m-auto">${name}</h3>
-            <h3 class="card-subtitle m-auto">Engineer</h3>
-        </div>
-        <div class="card-body">
-            <p>ID: ${id}</p>
-            <p><a href=mailto:${email}>${email}</a></p>
-            <p><a href='https://github.com/${gitHub}' target='_blank'>GitHub: ${gitHub}</a></p>
+        <div class="card ">
+            <div class="card-body">
+                <h4 class="card-header mx-auto text-center bg-primary text-light">${name}</h4>
+                <h5 class="card-header text-center bg-primary text-light">Engineer</h4>
+                <p class="card-text">ID: ${id}</p>
+                <p class="card-text">Email: <a href=mailto:${email}></a>${email}</p>
+                <p class="card-text">GitHub: <a href='https://github.com/${gitHub}' target='_blank'>${gitHub}</a></p>
+            </div>
         </div>
     </div>
-        
         `
 
     })
@@ -73,20 +71,25 @@ module.exports = (employees, engineers, interns) => {
     <header>
         <h1 class="text-center mt-3 text-light bg-danger">My Team</h1>
     </header>
-    <main class="flex-row d-flex justify-space-between justify-content-center">
-        <div class="col-4">
-            <div class="card bg-primary text-light">
-                <h3 class="card-subtitle m-auto">${name}</h3>
-                <h3 class="card-subtitle m-auto">${employees[0].getRole()}</h3>
+    <main class="flex-column d-flex justify-space-between justify-content-center">
+        <div class="m-5 row justify-content-around">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-header text-center bg-primary text-light">${employees[0].name}</h4>
+                        <h5 class="card-header text-center bg-primary text-light">${employees[0].getRole()}</h4>
+                        <p class="card-text">ID: ${employees[0].id}</p>
+                        <p class="card-text">Email: <a href=mailto:${email}></a>}${email}</p>
+                        <p class="card-text">Office Number: ${employees[0].officeNumber}</p>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <p>ID: ${id}</p>
-                <p><a href=mailto:${email}>Email: ${email}</a></p>
-                <p>Office number: ${officeNumber}</p>
-            </div>
+            ${engineerHtml.join('')}
+            ${internHtml.join('')}
         </div>
-        ${engineerHtml.join('')}
-        ${internHtml.join('')}
+    </main>   
+</body>
+</html>
     </main>   
 </body>
 </html>
